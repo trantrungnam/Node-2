@@ -9,7 +9,7 @@ module.exports = (sequelize, type) => {
             type: type.DATE,
         },
         payment_type: {
-            type: type.FLOAT,
+            type: type.STRING,
         },
         date: {
             type: type.DATE,
@@ -21,7 +21,7 @@ module.exports = (sequelize, type) => {
             type: type.STRING,
         },
         total: {
-            type: type.STRING
+            type: type.FLOAT
         },
     }, {underscored: true})
 }
