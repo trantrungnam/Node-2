@@ -6,6 +6,7 @@ const OrderModel = require('./orders')
 const Delivery_AddressModel = require('./delivery_address')
 const ProductModel = require('./product')
 const CategoryModel = require('./categories')
+const OrderItemsModel = require('./orderItem')
 
 const sequelize = new Sequelize('postgres','postgres','postgres', {
     host:'localhost',
@@ -24,20 +25,22 @@ const Logins = LoginsModel(sequelize, Sequelize)
 const Delivery_Address = Delivery_AddressModel(sequelize, Sequelize)
 const Orders = OrderModel(sequelize, Sequelize)
 const Products = ProductModel(sequelize, Sequelize)
+const OrderItems = OrderItemsModel(sequelize, Sequelize)
 const Categories = CategoryModel(sequelize, Sequelize)
 
 
 //ASSOCIATIONS
 
 Logins.belongsTo(Customers);
-// Orders.belongsTo(Customers);
-Orders.belongsTo(Delivery_Address);
 Customers.hasMany(Orders);
-
-
-
-
-
+Orders.belongsTo(Delivery_Address);
+Orders.belongsToMany(Products , {
+    through: OrderItems,
+});
+Products.belongsToMany(Orders, {
+    through: OrderItems,
+});
+Products.belongsTo(Categories)
 
 sequelize.sync({force: true})
     .then( () => {
