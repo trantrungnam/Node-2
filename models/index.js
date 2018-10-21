@@ -48,5 +48,12 @@ sequelize.sync({force: true})
     })
 
 module.exports = {
-    Admins
+    Admins,
+    Customers,
+    Logins,
+    Delivery_Address,
+    Orders,
+    OrderItems,
+    Categories,
+    Products
 }
