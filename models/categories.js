@@ -16,5 +16,5 @@ module.exports = (sequelize, type) => {
             type: type.STRING,
         }
 
-    } )
+    }, {underscored: true} )
 }

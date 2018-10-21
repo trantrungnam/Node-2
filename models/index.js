@@ -40,8 +40,7 @@ Orders.belongsToMany(Products , {
 Products.belongsToMany(Orders, {
     through: OrderItems,
 });
-Products.belongsTo(Categories)
-
+Categories.hasMany(Products)
 sequelize.sync({force: true})
     .then( () => {
         console.log(`Database & table created!`)
